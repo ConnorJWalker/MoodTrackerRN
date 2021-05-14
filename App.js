@@ -1,21 +1,37 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react'
+import { NavigationContainer } from '@react-navigation/native'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import FontAwesome from '@expo/vector-icons/FontAwesome5'
+
+// Application pages
+import HomeView from './src/views/home'
+import StatsView from './src/views/stats'
+import SettingsView from './src/views/settings'
+import PixelsView from './src/views/pixels'
+
+const Tab = createBottomTabNavigator()
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Tab.Navigator screenOptions={({ route }) => ({ tabBarIcon: () => getNavigationIcons(route) })}>    
+        <Tab.Screen name="Home" component={HomeView} />
+        <Tab.Screen name="Stats" component={StatsView} />
+        <Tab.Screen name="Pixels" component={PixelsView} />
+        <Tab.Screen name="Settings" component={SettingsView} />
+      </Tab.Navigator>    
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+function getNavigationIcons(route) {  
+    let icon
+    switch (route.name) {
+      case 'Home': icon = 'book'; break
+      case 'Stats': icon = 'chart-bar'; break
+      case 'Pixels': icon = 'border-all'; break
+      case 'Settings': icon = 'cog'; break
+    }
+
+    return <FontAwesome name={icon} size={30} />
+}
