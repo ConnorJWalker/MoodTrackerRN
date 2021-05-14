@@ -14,7 +14,7 @@ const Tab = createBottomTabNavigator()
 export default function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator screenOptions={({ route }) => ({ tabBarIcon: () => getNavigationIcons(route) })}>    
+      <Tab.Navigator screenOptions={({ route }) => ({ tabBarIcon: () => getNavigationIcons(route)})} tabBarOptions={{ showLabel: false }}>    
         <Tab.Screen name="Home" component={HomeView} />
         <Tab.Screen name="Stats" component={StatsView} />
         <Tab.Screen name="Pixels" component={PixelsView} />
