@@ -10,6 +10,10 @@ export default StyleSheet.create({
         borderWidth: 2,
         padding: 10
     },
+    dayHeader: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
     overallMoodContainer: {
         flexDirection: 'row',
         marginBottom: 7

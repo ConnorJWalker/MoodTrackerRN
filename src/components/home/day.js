@@ -1,5 +1,6 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
+import FontAwesome from '@expo/vector-icons/FontAwesome5'
 
 import MoodLog from './log'
 
@@ -7,18 +8,30 @@ import sharedStyles from '../../styles/shared'
 import homeStyles from '../../styles/homescreen'
 
 export default class DayEntry extends React.Component {
+    constructor() {
+        super()
+        this.state = {
+            showContent: true
+        }
+    }
+    
     render() {
         return (
             <View style={homeStyles.dayContainer}>
-                <Text style={sharedStyles.title}>{this.getDateString(this.props.date)}</Text>
+                <TouchableOpacity style={homeStyles.dayHeader} onPress={() => this.toggleShowContent()}>
+                    <Text style={sharedStyles.title}>{this.getDateString(this.props.date)}</Text>
+                    <FontAwesome name="chevron-up" size={25} style={sharedStyles.fontColourAlpha} />
+                </TouchableOpacity>
 
-                { this.renderMoodLog(this.props.logs) }
+                <View style={{ display: this.state.showContent ? 'flex' : 'none' }}>
+                    { this.renderMoodLog(this.props.logs) }
 
-                <View style={homeStyles.overallMoodContainer}>
-                    <Text style={sharedStyles.subTitle}>Overall I Felt: </Text>
-                    <Text style={homeStyles.overallMood}>{ this.props.overallMood }</Text>
+                    <View style={homeStyles.overallMoodContainer}>
+                        <Text style={sharedStyles.subTitle}>Overall I Felt: </Text>
+                        <Text style={homeStyles.overallMood}>{ this.props.overallMood }</Text>
+                    </View>
+                    <Text>{this.props.diary}</Text>
                 </View>
-                <Text>{this.props.diary}</Text>
             </View>
         )
     }
@@ -45,5 +58,9 @@ export default class DayEntry extends React.Component {
             else
                 return date.getDateString() // TODO: fix format
         }
+    }
+
+    toggleShowContent() {
+        this.setState({ showContent: !this.state.showContent })
     }
 }

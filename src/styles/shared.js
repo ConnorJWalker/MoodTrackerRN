@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native'
 
 const backgroundColor = '#eee'
-const fontColour = '#444'
+const fontColour = '#444444'
 
 export default StyleSheet.create({
     container: {
@@ -18,7 +18,7 @@ export default StyleSheet.create({
         fontWeight: '500',
         color: fontColour
     },
-    fontColour: { color: fontColour }
+    fontColourAlpha: { color: `${fontColour}88` }
 })
 
 exports.fontColour = fontColour
