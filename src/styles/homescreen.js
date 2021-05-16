@@ -2,6 +2,15 @@ import { StyleSheet } from 'react-native'
 import { fontColour } from './shared'
 
 export default StyleSheet.create({
+    addButton: {
+        position: 'absolute',
+        right: 20,
+        bottom: 20,
+        backgroundColor: '#fff',
+        borderWidth: 2,
+        padding: 15,
+        borderRadius: 50
+    },
     dayContainer: {
         backgroundColor: '#fff',
         margin: 10,

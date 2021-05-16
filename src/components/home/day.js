@@ -6,7 +6,6 @@ import MoodLog from './log'
 
 import sharedStyles from '../../styles/shared'
 import homeStyles from '../../styles/homescreen'
-import homescreen from '../../styles/homescreen'
 
 export default class DayEntry extends React.Component {
     constructor() {

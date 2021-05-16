@@ -1,9 +1,11 @@
 import React from 'react'
-import { Text, SafeAreaView } from 'react-native'
+import { Text, SafeAreaView, TouchableOpacity } from 'react-native'
+import FontAwesome from '@expo/vector-icons/FontAwesome5'
 
 import DayEntry from '../components/home/day'
 
 import sharedStyles from '../styles/shared'
+import homescreen from '../styles/homescreen'
 
 export default class HomeView extends React.Component {
     constructor() {
@@ -34,6 +36,9 @@ export default class HomeView extends React.Component {
             <SafeAreaView style={sharedStyles.container}>
                 <Text>Home Screen</Text>
                 { this.renderDayEntries() }
+                <TouchableOpacity style={homescreen.addButton}>
+                    <FontAwesome name="plus" size={25} />
+                </TouchableOpacity>
             </SafeAreaView>
         )
     }
