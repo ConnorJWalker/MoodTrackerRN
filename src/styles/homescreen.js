@@ -14,6 +14,10 @@ export default StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
     },
+    collapseIcon: {
+        justifyContent: 'center',
+        marginRight: 10
+    },
     overallMoodContainer: {
         flexDirection: 'row',
         marginBottom: 7

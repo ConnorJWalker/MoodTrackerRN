@@ -6,6 +6,7 @@ import MoodLog from './log'
 
 import sharedStyles from '../../styles/shared'
 import homeStyles from '../../styles/homescreen'
+import homescreen from '../../styles/homescreen'
 
 export default class DayEntry extends React.Component {
     constructor() {
@@ -20,7 +21,12 @@ export default class DayEntry extends React.Component {
             <View style={homeStyles.dayContainer}>
                 <TouchableOpacity style={homeStyles.dayHeader} onPress={() => this.toggleShowContent()}>
                     <Text style={sharedStyles.title}>{this.getDateString(this.props.date)}</Text>
-                    <FontAwesome name="chevron-up" size={25} style={sharedStyles.fontColourAlpha} />
+                    <View style={homeStyles.collapseIcon}>
+                        <FontAwesome 
+                            name={ this.state.showContent ? 'chevron-up' : 'chevron-down' }
+                            size={25}
+                            style={sharedStyles.fontColourAlpha} />
+                    </View>
                 </TouchableOpacity>
 
                 <View style={{ display: this.state.showContent ? 'flex' : 'none' }}>
