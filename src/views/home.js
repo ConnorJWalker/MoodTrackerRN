@@ -3,6 +3,7 @@ import { Text, SafeAreaView, TouchableOpacity } from 'react-native'
 import FontAwesome from '@expo/vector-icons/FontAwesome5'
 
 import DayEntry from '../components/home/day'
+import NewEntryModal from '../components/home/modal'
 
 import sharedStyles from '../styles/shared'
 import homescreen from '../styles/homescreen'
@@ -28,6 +29,7 @@ export default class HomeView extends React.Component {
                 overallMood: 'Happy',
                 diary: 'This is a test diary that will eventually be read by storage when I get to it'
             }],
+            showModal: false
         }
     }
     
@@ -36,9 +38,13 @@ export default class HomeView extends React.Component {
             <SafeAreaView style={sharedStyles.container}>
                 <Text>Home Screen</Text>
                 { this.renderDayEntries() }
-                <TouchableOpacity style={homescreen.addButton}>
+                <TouchableOpacity style={homescreen.addButton} onPress={() => this.updateModalVisibilty()}>
                     <FontAwesome name="plus" size={25} />
                 </TouchableOpacity>
+
+                <NewEntryModal
+                    show={this.state.showModal}
+                    toggleClose={() => this.updateModalVisibilty()} />
             </SafeAreaView>
         )
     }
@@ -51,5 +57,9 @@ export default class HomeView extends React.Component {
                 diary={entry.diary}
                 logs={entry.logs} />
         ))
+    }
+
+    updateModalVisibilty() {
+        this.setState({ showModal: !this.state.showModal })
     }
 }

@@ -18,7 +18,8 @@ export default StyleSheet.create({
         fontWeight: '500',
         color: fontColour
     },
-    fontColourAlpha: { color: `${fontColour}88` }
+    fontColourAlpha: { color: `${fontColour}88` },
+    fontColour: { color: fontColour }
 })
 
 exports.fontColour = fontColour

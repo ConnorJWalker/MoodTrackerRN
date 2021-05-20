@@ -1,0 +1,64 @@
+import React from "react";
+import { Modal, View, Text, TouchableOpacity } from 'react-native'
+import FontAwesome from '@expo/vector-icons/FontAwesome5'
+
+import styles from '../../styles/shared'
+import modalStyles from '../../styles/modals'
+
+export default class NewEntryModal extends React.Component {
+    constructor() {
+        super()
+
+        this.state = {
+            shouldShowMore: false
+        }
+    }
+
+    render() {
+        return (
+            <Modal visible={this.props.show} transparent={true} animationType="slide">
+                <View style={modalStyles.centerView}>
+                    <View style={modalStyles.modalView}>
+                        {/* Modal Header */}
+                        <View style={modalStyles.modalHeader}>
+                            <TouchableOpacity onPress={this.props.toggleClose}>
+                                <FontAwesome name="times" size={25} style={styles.fontColourAlpha} />
+                            </TouchableOpacity>
+                            <Text style={[styles.subTitle, modalStyles.modalTital]}>I Am Feeling</Text>
+                            {/* TODO: find less hacky method of aligning modal title */}
+                            <FontAwesome name="times" size={25} style={{color: '#00000000'}} />
+                        </View>
+
+                        {/* Main Modal Content */}
+                        <View style={modalStyles.moodIconsSelector}>
+                            { this.renderMoodIcons() }
+                        </View>
+
+                        {/* Modal Footer */}
+                        <View style={modalStyles.modalFooter}>
+                            <TouchableOpacity 
+                                onPress={() => this.handleShowMoreLessButtonClick()}
+                                style={[modalStyles.modalFooterButton, { borderRightWidth: 2 }]} 
+                            >
+                                <Text style={{textAlign: 'center'}}>Show { this.state.shouldShowMore ? 'Less' : 'More' }</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={modalStyles.modalFooterButton}>
+                                <Text style={{textAlign: 'center'}}>Add</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </View>
+            </Modal>
+        )
+    }
+
+    renderMoodIcons() {
+        return ['angry', 'frown', 'meh', 'smile', 'laugh-beam'].map(icon => (
+            <FontAwesome name={icon} size={40} style={styles.fontColour} />
+        ))
+    }
+
+    handleShowMoreLessButtonClick() {
+        this.setState({ shouldShowMore: !this.state.shouldShowMore })
+    }
+}
