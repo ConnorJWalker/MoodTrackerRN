@@ -33,9 +33,24 @@ export default StyleSheet.create({
         justifyContent: 'space-between',
         paddingHorizontal: 35
     },
+    moreInfoContainer: {
+        padding: 35
+    },
     emotionTagContainer: {
         flexDirection: 'row',
-        justifyContent: 'space-evenly'
+        justifyContent: 'space-evenly',
+        paddingVertical: 10
+    },
+    emotionTag: {
+        paddingVertical: 4,
+        paddingHorizontal: 6,
+    },
+    selectedEmotionTag: {
+        borderWidth: 2,
+        borderColor: fontColour,
+        paddingVertical: 2,
+        paddingHorizontal: 4,
+        borderRadius: 5
     },
     modalFooter: {
         flexDirection: 'row',

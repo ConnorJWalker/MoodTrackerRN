@@ -13,7 +13,8 @@ export default class NewEntryModal extends React.Component {
 
         this.state = {
             shouldShowMore: false,
-            selectedMainEmotion: -1
+            selectedMainEmotion: -1,
+            selectedEmotionTags: []
         }
         this.mainEmotions = ['angry', 'frown', 'meh', 'smile', 'laugh-beam']
     }
@@ -37,7 +38,7 @@ export default class NewEntryModal extends React.Component {
                         <View style={modalStyles.moodIconsSelector}>
                             { this.renderMoodIcons() }
                         </View>
-                        <View style={{ display: this.state.shouldShowMore ? 'flex' : 'none' }}>
+                        <View style={[{ display: this.state.shouldShowMore ? 'flex' : 'none' }, modalStyles.moreInfoContainer]}>
                             <Text>Emotions</Text>
                             <View>
                                 <Text style={{ display: this.state.selectedMainEmotion === -1 ? 'flex' : 'none' }}>
@@ -89,15 +90,33 @@ export default class NewEntryModal extends React.Component {
     }
 
     updateSelectedMood(index) {
-        this.setState({ selectedMainEmotion: index })
+        this.setState({ selectedMainEmotion: index, selectedEmotionTags: [] })
     }
 
     renderEmotionTags() {
         if (this.state.selectedMainEmotion === -1) return
 
-        return tags[this.mainEmotions[this.state.selectedMainEmotion]].map(emotion => (
-            <Text>{ emotion }</Text>
+        return tags[this.mainEmotions[this.state.selectedMainEmotion]].map((emotion, i) => (
+            <Text 
+                onPress={() => this.handleEmotionTagClick(i)}
+                key={i}
+                style={this.shouldStyle(i) ? modalStyles.selectedEmotionTag : modalStyles.emotionTag}
+            >
+                { emotion }
+            </Text>
         ))
+    }
+
+    handleEmotionTagClick(index) {
+        const emotions = this.state.selectedEmotionTags.includes(index)
+            ? this.state.selectedEmotionTags.filter(i => i !== index)
+            : this.state.selectedEmotionTags.concat(index)
+
+        this.setState({ selectedEmotionTags: emotions })
+    }
+
+    shouldStyle(index) {
+        return this.state.selectedEmotionTags.includes(index)
     }
 
     closeModal() {
