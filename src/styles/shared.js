@@ -19,7 +19,8 @@ export default StyleSheet.create({
         color: fontColour
     },
     fontColourAlpha: { color: `${fontColour}88` },
-    fontColour: { color: fontColour }
+    fontColour: { color: fontColour },
+    accentColour: { color: '#ff24c8' }
 })
 
 exports.fontColour = fontColour
