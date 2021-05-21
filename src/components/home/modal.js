@@ -39,7 +39,19 @@ export default class NewEntryModal extends React.Component {
                         </View>
                         <View style={{ display: this.state.shouldShowMore ? 'flex' : 'none' }}>
                             <Text>Emotions</Text>
-
+                            <View>
+                                <Text style={{ display: this.state.selectedMainEmotion === -1 ? 'flex' : 'none' }}>
+                                    No Mood Currently Selected
+                                </Text>
+                                <View 
+                                    style={[
+                                        { display: this.state.selectedMainEmotion !== -1 ? 'flex' : 'none' },
+                                        modalStyles.emotionTagContainer
+                                    ]}
+                                >
+                                    { this.renderEmotionTags() }
+                                </View>
+                            </View>
                             <Text>I am currently at: </Text>
                         </View>
 
@@ -80,8 +92,16 @@ export default class NewEntryModal extends React.Component {
         this.setState({ selectedMainEmotion: index })
     }
 
+    renderEmotionTags() {
+        if (this.state.selectedMainEmotion === -1) return
+
+        return tags[this.mainEmotions[this.state.selectedMainEmotion]].map(emotion => (
+            <Text>{ emotion }</Text>
+        ))
+    }
+
     closeModal() {
-        this.setState({ selectedMainEmotion: -1 })
+        this.setState({ selectedMainEmotion: -1, shouldShowMore: false })
         this.props.toggleClose()
     }
 }

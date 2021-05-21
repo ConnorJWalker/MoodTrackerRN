@@ -1,0 +1,17 @@
+{
+    "angry": [
+        "angry 1", "angry 2", "angry 3"
+    ],
+    "frown": [
+        "frown 1", "frown 2", "frown 3"
+    ],
+    "meh": [
+        "meh 1", "meh 2", "meh 3"
+    ],
+    "smile": [
+        "smile 1", "smile 2", "smile 3"
+    ],
+    "laugh-beam": [
+        "laugh 1", "laugh 2", "laugh 3"
+    ]
+}

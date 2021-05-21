@@ -33,6 +33,10 @@ export default StyleSheet.create({
         justifyContent: 'space-between',
         paddingHorizontal: 35
     },
+    emotionTagContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-evenly'
+    },
     modalFooter: {
         flexDirection: 'row',
         marginTop: 25,
