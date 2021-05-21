@@ -50,12 +50,13 @@ export default class HomeView extends React.Component {
     }
 
     renderDayEntries() {
-        return this.state.entries.map(entry => (
+        return this.state.entries.map((entry, i) => (
             <DayEntry 
                 date={entry.date} 
                 overallMood={entry.overallMood} 
                 diary={entry.diary}
-                logs={entry.logs} />
+                logs={entry.logs}
+                key={i} />
         ))
     }
 

@@ -42,10 +42,11 @@ export default class DayEntry extends React.Component {
     }
 
     renderMoodLog(logs) {
-        return logs.map(log => (
+        return logs.map((log, i) => (
             <MoodLog 
                 mood={log.mood}
-                tags={log.tags} />
+                tags={log.tags}
+                key={i} />
         ))
     }
 

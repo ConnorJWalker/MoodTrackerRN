@@ -32,8 +32,8 @@ export default class MoodLog extends React.Component {
     }
 
     renderTags(tags) {
-        return tags.map(tag => (
-            <Text style={homescreenStyles.tag}>{ tag }</Text>
+        return tags.map((tag, i) => (
+            <Text style={homescreenStyles.tag} key={i}>{ tag }</Text>
         ))
     }
 }
