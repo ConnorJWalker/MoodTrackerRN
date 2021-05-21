@@ -1,0 +1,15 @@
+{
+    "entries": [
+        { "description": "Automatically detect location on mood entry", "value": true },
+        { "description": "Automatically detect local weather", "value": false }
+    ],
+    "moodOverview": [
+        { "description": "Daily mood", "value": true },
+        { "description": "Mood entries", "value": false },
+        { "description": "Average mood entries per day of Week", "value": true },
+        { "description": "Frequent entry locations", "value": true }
+    ],
+    "dayByPixels": [
+        { "description": "First day is", "value": true }
+    ]
+}
