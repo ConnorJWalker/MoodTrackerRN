@@ -1,5 +1,6 @@
 import React from 'react'
 import { Text, View, SafeAreaView, Switch } from 'react-native'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import styles from '../styles/shared'
 import settingsStyles from '../styles/settings'
@@ -10,9 +11,8 @@ export default class SettingsView extends React.Component {
     constructor() {
         super()
 
-        this.state = {
-            settings: defaultSettings
-        }
+        this.state = { settings: defaultSettings }
+        this.loadSettings()
     }
 
     render() {
@@ -38,6 +38,15 @@ export default class SettingsView extends React.Component {
         )
     }
 
+    loadSettings() {
+        AsyncStorage.getItem('settings')
+            .then(settings => {
+                if (settings)
+                    this.setState({ settings: JSON.parse(settings) })
+            })
+            .catch(error => console.error)
+    }
+
     renderOptionsList(list, groupNo) {
         return list.map((item, i) => (
             <View style={settingsStyles.settingsRow} key={i}>
@@ -61,5 +70,6 @@ export default class SettingsView extends React.Component {
         newSettingsValues[groupName][optionName].value = !newSettingsValues[groupName][optionName].value
 
         this.setState({ settings: newSettingsValues })
+        AsyncStorage.setItem('settings', JSON.stringify(this.state.settings))
     }
 }
