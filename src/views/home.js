@@ -13,7 +13,10 @@ export default class HomeView extends React.Component {
     constructor() {
         super()
 
-        this.state = { showModal: false, entries: [] }
+        this.state = { 
+            showModal: false, 
+            entries: []
+        }
         this.loadEntries()
     }
     
@@ -53,7 +56,10 @@ export default class HomeView extends React.Component {
                 overallMood={entry.overallMood} 
                 diary={entry.diary}
                 logs={entry.logs}
-                key={i} />
+                dayEntryToggle={() => this.updateDayModalVisibility()}
+                key={i}
+                index={i}
+                saveDiary={entry => this.saveDiaryEntry(i, entry)} />
         ))
     }
 
@@ -79,6 +85,14 @@ export default class HomeView extends React.Component {
                 diary: null
             })
         }
+
+        this.setState({ entries })
+        AsyncStorage.setItem('entries', JSON.stringify(this.state.entries))
+    }
+
+    saveDiaryEntry(index, entry) {
+        let entries = this.state.entries
+        entries[index].diary = entry.diary
 
         this.setState({ entries })
         AsyncStorage.setItem('entries', JSON.stringify(this.state.entries))

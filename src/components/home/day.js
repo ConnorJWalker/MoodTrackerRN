@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity } from 'react-native'
 import FontAwesome from '@expo/vector-icons/FontAwesome5'
 
 import MoodLog from './log'
+import DayEntryModal from './overallModal'
 
 import sharedStyles from '../../styles/shared'
 import homeStyles from '../../styles/homescreen'
@@ -11,7 +12,8 @@ export default class DayEntry extends React.Component {
     constructor() {
         super()
         this.state = {
-            showContent: true
+            showContent: true,
+            showDayModal: false
         }
     }
     
@@ -31,12 +33,20 @@ export default class DayEntry extends React.Component {
                 <View style={{ display: this.state.showContent ? 'flex' : 'none' }}>
                     { this.renderMoodLog(this.props.logs) }
 
-                    <View style={homeStyles.overallMoodContainer}>
-                        <Text style={sharedStyles.subTitle}>Overall I Felt: </Text>
-                        <Text style={homeStyles.overallMood}>{ this.props.overallMood || 'No Overall mood yet :(' }</Text>
-                    </View>
-                    <Text>{this.props.diary || 'No entry yet, click here to add overall day entry'}</Text>
+                    <TouchableOpacity onPress={() => this.toggleDayEntryModal()}>
+                        <View style={homeStyles.overallMoodContainer}>
+                            <Text style={sharedStyles.subTitle}>Overall I Felt: </Text>
+                            <Text style={homeStyles.overallMood}>{ this.props.overallMood || 'No Overall mood yet :(' }</Text>
+                        </View>
+                        <Text>{this.props.diary || 'No entry yet, click here to add overall day entry'}</Text>
+                    </TouchableOpacity>
                 </View>
+
+                <DayEntryModal 
+                    show={this.state.showDayModal}
+                    toggleClose={() => this.toggleDayEntryModal()}
+                    diary={this.props.diary}
+                    saveDiary={entry => this.props.saveDiary(entry)} />
             </View>
         )
     }
@@ -70,5 +80,9 @@ export default class DayEntry extends React.Component {
 
     toggleShowContent() {
         this.setState({ showContent: !this.state.showContent })
+    }
+
+    toggleDayEntryModal() {
+        this.setState({ showDayModal: !this.state.showDayModal })
     }
 }
