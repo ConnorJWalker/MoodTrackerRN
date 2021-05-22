@@ -23,12 +23,15 @@ export default class MoodLog extends React.Component {
     }
 
     getMoodIcon(mood) {
-        const moods = {
-            Happy: 'smile',
-            Sad: 'sad-cry'
-        }
+        const mainEmotions = ['angry', 'frown', 'meh', 'smile', 'laugh-beam']
+        const mainEmotionsDisplay = ['Angry', 'Sad', 'Meh', 'Happy', 'Very Happy']
 
-        return <FontAwesome style={homescreenStyles.faceIcon} name={moods[mood]} size={60} />
+        return (
+            <FontAwesome 
+                style={homescreenStyles.faceIcon} 
+                name={mainEmotions[mainEmotionsDisplay.indexOf(mood)]} 
+                size={60} />
+        )
     }
 
     renderTags(tags) {
