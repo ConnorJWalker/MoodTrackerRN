@@ -39,12 +39,17 @@ export default StyleSheet.create({
         flexDirection: 'row',
         marginBottom: 10
     },
+    entryContainerRight: {
+        flexDirection: 'row',
+        flex: 1,
+        justifyContent: 'space-between',
+    },
     faceIcon: {
         color: fontColour,
         marginRight: 10
     },
     tagContainer: {
-        flexDirection: 'row'
+        flexDirection: 'row',
     },
     tag: {
         marginRight: 5,
@@ -52,5 +57,8 @@ export default StyleSheet.create({
         borderColor: fontColour,
         borderWidth: 2,
         borderRadius: 5
+    },
+    chevronRight: {
+        marginTop: 20
     }
 })

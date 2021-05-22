@@ -33,9 +33,9 @@ export default class DayEntry extends React.Component {
 
                     <View style={homeStyles.overallMoodContainer}>
                         <Text style={sharedStyles.subTitle}>Overall I Felt: </Text>
-                        <Text style={homeStyles.overallMood}>{ this.props.overallMood }</Text>
+                        <Text style={homeStyles.overallMood}>{ this.props.overallMood || 'No Overall mood yet :(' }</Text>
                     </View>
-                    <Text>{this.props.diary}</Text>
+                    <Text>{this.props.diary || 'No entry yet, click here to add overall day entry'}</Text>
                 </View>
             </View>
         )
@@ -52,7 +52,7 @@ export default class DayEntry extends React.Component {
 
     getDateString(date) {
         date = new Date(date)
-        
+
         const day = date.getDate()
         const month = date.getMonth()
         const year = date.getFullYear()

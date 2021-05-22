@@ -10,13 +10,17 @@ export default class MoodLog extends React.Component {
         return (
             <View style={homescreenStyles.entryContainer}>
                 { this.getMoodIcon(this.props.mood) }
-                <View>
-                    <Text style={sharedStyles.subTitle}>{ this.props.mood }</Text>
+                <View style={homescreenStyles.entryContainerRight}>
                     <View>
+                        <Text style={sharedStyles.subTitle}>{ this.props.mood }</Text>
                         <View style={homescreenStyles.tagContainer}>
                             { this.renderTags(this.props.tags) }
                         </View>
                     </View>
+                    <FontAwesome 
+                        name='chevron-right' 
+                        style={[sharedStyles.fontColourAlpha, homescreenStyles.chevronRight]} 
+                        size={25} />
                 </View>
             </View>
         )
