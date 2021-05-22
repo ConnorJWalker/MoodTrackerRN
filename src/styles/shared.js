@@ -2,6 +2,7 @@ import { StyleSheet } from 'react-native'
 
 const backgroundColor = '#eee'
 const fontColour = '#444444'
+const accentColour = '#ff24c8'
 
 export default StyleSheet.create({
     container: {
@@ -20,7 +21,8 @@ export default StyleSheet.create({
     },
     fontColourAlpha: { color: `${fontColour}88` },
     fontColour: { color: fontColour },
-    accentColour: { color: '#ff24c8' }
+    accentColour: { color: accentColour }
 })
 
 exports.fontColour = fontColour
+exports.accentColour = accentColour

@@ -9,6 +9,8 @@ import StatsView from './src/views/stats'
 import SettingsView from './src/views/settings'
 import PixelsView from './src/views/pixels'
 
+import { accentColour } from './src/styles/shared'
+
 const Tab = createBottomTabNavigator()
 
 const theme = {
@@ -16,14 +18,16 @@ const theme = {
   colors: {
     ...DefaultTheme.colors,
     card: 'rgb(238, 238, 238)',
-    border: 'rgb(238, 238, 238)',
+    border: 'rgb(238, 238, 238)'
   }
 }
+
+const tabBarOptions = { showLabel: false, activeTintColor: accentColour }
 
 export default function App() {
   return (
     <NavigationContainer theme={theme}>
-      <Tab.Navigator screenOptions={({ route }) => ({ tabBarIcon: () => getNavigationIcons(route)})} tabBarOptions={{ showLabel: false }}>    
+      <Tab.Navigator screenOptions={({ route }) => handleScreenOptions(route)} tabBarOptions={tabBarOptions}>    
         <Tab.Screen name="Home" component={HomeView} />
         <Tab.Screen name="Stats" component={StatsView} />
         <Tab.Screen name="Pixels" component={PixelsView} />
@@ -33,7 +37,7 @@ export default function App() {
   );
 }
 
-function getNavigationIcons(route) {  
+function getNavigationIcons(route, colour) {  
     let icon
     switch (route.name) {
       case 'Home': icon = 'book'; break
@@ -42,5 +46,11 @@ function getNavigationIcons(route) {
       case 'Settings': icon = 'cog'; break
     }
 
-    return <FontAwesome name={icon} size={30} />
+    return <FontAwesome name={icon} size={30} color={colour} />
+}
+
+function handleScreenOptions(route) {
+    return {
+        tabBarIcon: ({ color }) => getNavigationIcons(route, color)
+    }
 }
