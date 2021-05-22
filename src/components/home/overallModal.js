@@ -9,7 +9,9 @@ export default class DayEntryModal extends React.Component {
     constructor(props) {
         super(props)
 
-        this.state = { diary: this.props.diary }
+        this.state = { diary: this.props.diary, selectedEmotion: -1 }
+        this.mainEmotions = ['angry', 'frown', 'meh', 'smile', 'laugh-beam']
+        this.mainEmotionsDisplay = ['Angry', 'Sad', 'Meh', 'Happy', 'Very Happy']
     }
 
     render() {
@@ -29,6 +31,9 @@ export default class DayEntryModal extends React.Component {
 
                         {/* Main content */}
                         <View style={modalStyles.moreInfoContainer}>
+                            <View style={modalStyles.moodIconsSelector}>
+                                { this.renderMoodIcons() }
+                            </View>
                             <Text style={[styles.subTitle, modalStyles.modalTital]}>Diary</Text>
                             <TextInput 
                                 defaultValue={this.state.dairy}
@@ -54,9 +59,27 @@ export default class DayEntryModal extends React.Component {
 
     handleSaveButtonClick() {
         this.props.saveDiary({
-            diary: this.state.diary
+            diary: this.state.diary,
+            mood: this.state.selectedEmotion !== -1
+                ? this.mainEmotionsDisplay[this.state.selectedEmotion]
+                : null
         })
 
         this.closeModal()
+    }
+
+    renderMoodIcons() {
+        return this.mainEmotions.map((icon, i) => (
+            <FontAwesome 
+                name={icon}
+                size={40}
+                style={this.state.selectedEmotion === i ? styles.accentColour : styles.fontColour} 
+                key={i}
+                onPress={() => this.updateSelectedMood(i)} />
+        ))
+    }
+
+    updateSelectedMood(index) {
+        this.setState({ selectedEmotion: index })
     }
 }

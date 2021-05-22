@@ -93,6 +93,7 @@ export default class HomeView extends React.Component {
     saveDiaryEntry(index, entry) {
         let entries = this.state.entries
         entries[index].diary = entry.diary
+        entries[index].overallMood = entry.mood
 
         this.setState({ entries })
         AsyncStorage.setItem('entries', JSON.stringify(this.state.entries))
