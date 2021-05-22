@@ -51,6 +51,8 @@ export default class DayEntry extends React.Component {
     }
 
     getDateString(date) {
+        date = new Date(date)
+        
         const day = date.getDate()
         const month = date.getMonth()
         const year = date.getFullYear()

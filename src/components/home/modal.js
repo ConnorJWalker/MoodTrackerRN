@@ -17,6 +17,7 @@ export default class NewEntryModal extends React.Component {
             selectedEmotionTags: []
         }
         this.mainEmotions = ['angry', 'frown', 'meh', 'smile', 'laugh-beam']
+        this.mainEmotionsDisplay = ['Angry', 'Sad', 'Meh', 'Happy', 'Very Happy']
     }
 
     render() {
@@ -64,7 +65,7 @@ export default class NewEntryModal extends React.Component {
                             >
                                 <Text style={{textAlign: 'center'}}>Show { this.state.shouldShowMore ? 'Less' : 'More' }</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style={modalStyles.modalFooterButton}>
+                            <TouchableOpacity style={modalStyles.modalFooterButton} onPress={() => this.handleAddButtonClick()}>
                                 <Text style={{textAlign: 'center'}}>Add</Text>
                             </TouchableOpacity>
                         </View>
@@ -113,6 +114,18 @@ export default class NewEntryModal extends React.Component {
             : this.state.selectedEmotionTags.concat(index)
 
         this.setState({ selectedEmotionTags: emotions })
+    }
+
+    handleAddButtonClick() {
+        if (this.state.selectedMainEmotion !== -1)
+            console.log(this.props)
+            this.props.saveEntry({
+                mood: this.mainEmotionsDisplay[this.state.selectedMainEmotion],
+                tags: this.state.selectedEmotionTags.map(tag => 
+                    tags[this.mainEmotions[this.state.selectedMainEmotion]][tag])
+            })
+
+            this.closeModal()
     }
 
     shouldStyle(index) {

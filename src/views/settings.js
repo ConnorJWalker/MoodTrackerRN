@@ -44,7 +44,7 @@ export default class SettingsView extends React.Component {
                 if (settings)
                     this.setState({ settings: JSON.parse(settings) })
             })
-            .catch(error => console.error)
+            .catch(error => console.error(error))
     }
 
     renderOptionsList(list, groupNo) {
